@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import contactActions from "../../redux/contacts/contactsActions";
 import styles from "./ContactList.module.css";
 
-const ContactList = ({ contacts, onRemoveContact }) => {
-  // console.log(contacts);
+const ContactList = ({ contacts, onRemoveContact, uploadContacts }) => {
+  console.log(contacts);
   return (
     <ul className={styles.list}>
       {contacts.map(({ name, id, number }) => {
@@ -52,9 +52,9 @@ const ContactList = ({ contacts, onRemoveContact }) => {
 // };
 // };
 
-const mapStateToProps = ({ contacts, filter }) => ({
-  contacts: contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
+const mapStateToProps = (state) => ({
+  contacts: state.contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(state.filter.toLowerCase())
   ),
 });
 

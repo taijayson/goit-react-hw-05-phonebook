@@ -15,16 +15,16 @@ class ContactForm extends Component {
     try {
       const contacts = JSON.parse(localStorage.getItem("contacts"));
       if (contacts) {
-        this.setState({ contacts });
+        this.props.dbUploadContacts(contacts);
       }
     } catch (error) {}
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.name !== prevState.name) {
+    if (this.props.contacts !== prevProps.contacts) {
       localStorage.setItem("contacts", JSON.stringify(this.props.contacts));
     }
-    console.log(this.props);
+    console.log(prevProps);
   }
 
   //   addContact = (data) => {
@@ -119,6 +119,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  dbUploadContacts: (contacts) =>
+    dispatch(contactActions.uploadContacts(contacts)),
+
   onSubmit: (contact) => dispatch(contactActions.addContact(contact)),
 });
 
