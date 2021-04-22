@@ -1,5 +1,6 @@
+const UPLOADCONTACTS = "contacts/uploadContacts";
 const ADDCONTACT = "contact/addContact";
 const FILTERCONTACT = "contact/filterContact";
 const DELETECONTACT = "contact/deleteContact";
 
-export { ADDCONTACT, FILTERCONTACT, DELETECONTACT };
+export { UPLOADCONTACTS, ADDCONTACT, FILTERCONTACT, DELETECONTACT };

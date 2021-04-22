@@ -19,6 +19,19 @@ import "./App.css";
 //     filter: "",
 //   };
 
+// componentDidMount() {
+//     const contacts = JSON.parse(localStorage.getItem("contacts"));
+//     if (contacts) {
+//       this.setState(contacts);
+//     }
+//   }
+
+//   componentDidUpdate(prevProps, prevState) {
+//     if (this.state.contact !== prevState.contacts) {
+//       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
+//     }
+//   }
+
 //   getContactMatch = () => {
 //     const { contacts, filter } = this.state;
 
@@ -39,19 +52,6 @@ import "./App.css";
 //       ),
 //     }));
 //   };
-
-//   componentDidMount() {
-//     const contacts = JSON.parse(localStorage.getItem("contacts"));
-//     if (contacts) {
-//       this.setState({ contacts });
-//     }
-//   }
-
-//   componentDidUpdate(prevProps, prevState) {
-//     if (this.state.contact !== prevState.contacts) {
-//       localStorage.setItem("contacts", JSON.stringify(this.state.contacts));
-//     }
-//   }
 
 //   render() {
 //     const { filter } = this.state;

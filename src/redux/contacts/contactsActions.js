@@ -1,4 +1,15 @@
-import { ADDCONTACT, FILTERCONTACT, DELETECONTACT } from "./contactsConstanse";
+import { db } from "../../db/request";
+import {
+  UPLOADCONTACTS,
+  ADDCONTACT,
+  FILTERCONTACT,
+  DELETECONTACT,
+} from "./contactsConstanse";
+
+const uploadContacts = (contacts) => ({
+  type: UPLOADCONTACTS,
+  payload: contacts,
+});
 
 const addContact = (contact) => {
   return {
@@ -25,6 +36,6 @@ const deleteContact = (id) => {
   };
 };
 
-const allActions = { addContact, filterContact, deleteContact };
+const allActions = { uploadContacts, addContact, filterContact, deleteContact };
 
 export default allActions;

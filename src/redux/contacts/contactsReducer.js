@@ -1,9 +1,18 @@
 import { combineReducers } from "redux";
-import { ADDCONTACT, FILTERCONTACT, DELETECONTACT } from "./contactsConstanse";
-import contactsBase from "../../data/contactBase.json";
+import {
+  UPLOADCONTACTS,
+  ADDCONTACT,
+  FILTERCONTACT,
+  DELETECONTACT,
+} from "./contactsConstanse";
+// import contactsBase from "../../data/contactBase.json";
+const contacts = localStorage.getItem("contacts");
 
-const contactsItem = (state = contactsBase, { type, payload }) => {
+const contactsItem = (state = [], { type, payload }) => {
   switch (type) {
+    case UPLOADCONTACTS:
+      return payload;
+
     case ADDCONTACT:
       // console.log(payload);
       return [...state, payload];

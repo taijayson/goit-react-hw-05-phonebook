@@ -11,6 +11,22 @@ class ContactForm extends Component {
     number: "",
   };
 
+  componentDidMount() {
+    try {
+      const contacts = JSON.parse(localStorage.getItem("contacts"));
+      if (contacts) {
+        this.setState({ contacts });
+      }
+    } catch (error) {}
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.name !== prevState.name) {
+      localStorage.setItem("contacts", JSON.stringify(this.props.contacts));
+    }
+    console.log(this.props);
+  }
+
   //   addContact = (data) => {
   // const { contacts } = this.props.contacts;
   // } else {
@@ -18,14 +34,6 @@ class ContactForm extends Component {
   //     contacts: [newContact, ...contacts.contacts],
   //   }));
   // }
-  //   };
-
-  //   checkContact = (name) => {
-  //     const contacts = this.props.contacts;
-  //     // const normalizeName = name.toLowerCase();
-  //     return contacts.some(
-  //       (contact) => contact.name.toLowerCase() === name.toLowerCase()
-  //     );
   //   };
 
   handleChange = (event) => {
@@ -39,10 +47,18 @@ class ContactForm extends Component {
 
     const { name, number } = this.state;
 
-    // if (this.checkContact(name)) {
-    //   alert(`Contact with name "${name}" already in base`);
-    //   return;
-    // }
+    const checkContact = (name) => {
+      const contacts = this.props.contacts;
+      // const normalizeName = name.toLowerCase();
+      return contacts.some(
+        (contact) => contact.name.toLowerCase() === name.toLowerCase()
+      );
+    };
+
+    if (checkContact(name)) {
+      alert(`Contact with name "${name}" already in base`);
+      return;
+    }
 
     const newContact = {
       name: name,
