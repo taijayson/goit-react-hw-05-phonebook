@@ -48,7 +48,7 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     const checkContact = (name) => {
-      const contacts = this.props.contacts;
+      const { contacts } = this.props.contacts;
       // const normalizeName = name.toLowerCase();
       return contacts.some(
         (contact) => contact.name.toLowerCase() === name.toLowerCase()

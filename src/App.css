@@ -1,7 +1,7 @@
 .wrap {
   display: flex;
-  justify-content: space-evenly;
-  width: 1200px;
+  justify-content: space-between;
+  width: 500px;
   padding: 30px 15px;
   margin: 0 auto;
 }

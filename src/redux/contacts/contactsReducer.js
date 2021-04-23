@@ -1,39 +1,58 @@
 import { combineReducers } from "redux";
-import {
-  UPLOADCONTACTS,
-  ADDCONTACT,
-  FILTERCONTACT,
-  DELETECONTACT,
-} from "./contactsConstanse";
+
+// import {
+//   UPLOADCONTACTS,
+//   ADDCONTACT,
+//   FILTERCONTACT,
+//   DELETECONTACT,
+// } from "./contactsConstanse";
 // import contactsBase from "../../data/contactBase.json";
-const contacts = localStorage.getItem("contacts");
 
-const contactsItem = (state = [], { type, payload }) => {
-  switch (type) {
-    case UPLOADCONTACTS:
-      return payload;
+// const contacts = localStorage.getItem("contacts");
 
-    case ADDCONTACT:
-      // console.log(payload);
-      return [...state, payload];
+// const contactsItem = (state = [], { type, payload }) => {
+//   switch (type) {
+//     case UPLOADCONTACTS:
+//       return payload;
 
-    case DELETECONTACT:
-      return state.filter((contact) => contact.id !== payload);
+//     case ADDCONTACT:
+//       // console.log(payload);
+//       return [...state, payload];
 
-    default:
-      return state;
-  }
-};
+//     case DELETECONTACT:
+//       return state.filter((contact) => contact.id !== payload);
 
-const contactsFilter = (state = "", { type, payload }) => {
-  switch (type) {
-    case FILTERCONTACT:
-      return payload;
+//     default:
+//       return state;
+//   }
+// };
+import { createReducer } from "@reduxjs/toolkit";
 
-    default:
-      return state;
-  }
-};
+import {
+  addContact,
+  deleteContact,
+  uploadContacts,
+  filterContact,
+} from "./contactsActions";
+
+const contactsItem = createReducer([], {
+  [addContact]: (state, { payload }) => [...state, payload],
+  [uploadContacts]: (state, { payload }) => payload,
+  [deleteContact]: (state, { payload }) =>
+    state.filter((contact) => contact.id !== payload),
+});
+
+const contactsFilter = createReducer("", {
+  [filterContact]: (state, { payload }) => payload,
+});
+//   switch (type) {
+//     case FILTERCONTACT:
+//       return payload;
+
+//     default:
+//       return state;
+//   }
+// };
 
 const contactsReducer = combineReducers({
   contacts: contactsItem,

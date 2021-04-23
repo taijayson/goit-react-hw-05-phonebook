@@ -1,9 +1,9 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { contactsReducer } from "./contacts/contactsReducer";
 
-const store = createStore(
-  contactsReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = configureStore({
+  reducer: { contacts: contactsReducer },
+  devTools: process.env.NODE_ENV !== "production",
+});
 
 export default store;
