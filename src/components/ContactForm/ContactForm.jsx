@@ -4,6 +4,7 @@ import contactActions from "../../redux/contacts/contactsActions";
 import PropTypes from "prop-types";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./ContactForm.module.css";
+import comboDispatchFunc from "../../redux/contacts/contactsActions";
 
 class ContactForm extends Component {
   state = {
@@ -27,15 +28,6 @@ class ContactForm extends Component {
     console.log(prevProps);
   }
 
-  //   addContact = (data) => {
-  // const { contacts } = this.props.contacts;
-  // } else {
-  //   this.setState((contacts) => ({
-  //     contacts: [newContact, ...contacts.contacts],
-  //   }));
-  // }
-  //   };
-
   handleChange = (event) => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
@@ -43,12 +35,12 @@ class ContactForm extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.props);
 
     const { name, number } = this.state;
+    console.log(this.state);
 
     const checkContact = (name) => {
-      const { contacts } = this.props.contacts;
+      const { contacts } = this.props;
       // const normalizeName = name.toLowerCase();
       return contacts.some(
         (contact) => contact.name.toLowerCase() === name.toLowerCase()
@@ -60,13 +52,13 @@ class ContactForm extends Component {
       return;
     }
 
-    const newContact = {
-      name: name,
-      number: number,
-      id: uuidv4(),
-    };
+    // const newContact = {
+    //   name: name,
+    //   number: number,
+    //   id: uuidv4(),
+    // };
 
-    this.props.onSubmit(newContact);
+    this.props.onSubmit({ name, number });
     this.setState({ name: "", number: "" });
   };
 
@@ -120,9 +112,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   dbUploadContacts: (contacts) =>
-    dispatch(contactActions.uploadContacts(contacts)),
-
-  onSubmit: (contact) => dispatch(contactActions.addContact(contact)),
+    dispatch(comboDispatchFunc.uploadContacts(contacts)),
+  onSubmit: (contact) => dispatch(comboDispatchFunc.addContact(contact)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);

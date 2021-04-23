@@ -8,8 +8,6 @@ import { combineReducers } from "redux";
 // } from "./contactsConstanse";
 // import contactsBase from "../../data/contactBase.json";
 
-// const contacts = localStorage.getItem("contacts");
-
 // const contactsItem = (state = [], { type, payload }) => {
 //   switch (type) {
 //     case UPLOADCONTACTS:
@@ -34,9 +32,12 @@ import {
   uploadContacts,
   filterContact,
 } from "./contactsActions";
-
+const contacts = localStorage.getItem("contacts");
 const contactsItem = createReducer([], {
-  [addContact]: (state, { payload }) => [...state, payload],
+  [addContact]: (state, { payload }) => {
+    console.log(payload);
+    return [...state, payload];
+  },
   [uploadContacts]: (state, { payload }) => payload,
   [deleteContact]: (state, { payload }) =>
     state.filter((contact) => contact.id !== payload),

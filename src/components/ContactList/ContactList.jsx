@@ -52,9 +52,9 @@ const ContactList = ({ contacts, onRemoveContact, uploadContacts }) => {
 // };
 // };
 
-const mapStateToProps = ({ contacts }) => ({
-  contacts: contacts.contacts.filter((contact) =>
-    contact.name.toLowerCase().includes(contacts.filter.toLowerCase())
+const mapStateToProps = ({ contacts, filter }) => ({
+  contacts: contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
   ),
 });
 

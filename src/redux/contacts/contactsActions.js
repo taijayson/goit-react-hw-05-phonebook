@@ -27,10 +27,12 @@ export const uploadContacts = createAction(UPLOADCONTACTS);
 //   };
 // };
 
-export const addContact = createAction(ADDCONTACT, (name, number) => ({
-  payload: name,
-  number,
-  id: uuidv4(),
+export const addContact = createAction(ADDCONTACT, ({ name, number }) => ({
+  payload: {
+    name,
+    number,
+    id: uuidv4(),
+  },
 }));
 
 // const filterContact = (value) => {
